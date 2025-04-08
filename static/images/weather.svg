@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <defs>
+    <linearGradient id="rainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3498db" />
+      <stop offset="100%" stop-color="#2980b9" />
+    </linearGradient>
+    <linearGradient id="sunGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f1c40f" />
+      <stop offset="100%" stop-color="#f39c12" />
+    </linearGradient>
+    <linearGradient id="cloudGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ecf0f1" />
+      <stop offset="100%" stop-color="#bdc3c7" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sun -->
+  <circle cx="80" cy="80" r="40" fill="url(#sunGradient)">
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite" />
+  </circle>
+  
+  <!-- Cloud -->
+  <g transform="translate(120, 100) scale(0.8)">
+    <path d="M25,60 a20,20 0 0,1 0,-40 h50 a20,20 0 0,1 0,40 z" fill="url(#cloudGradient)" />
+    <animateTransform attributeName="transform" type="translate" from="-5,0" to="5,0" dur="3s" repeatCount="indefinite" additive="sum" />
+  </g>
+  
+  <!-- Large Cloud -->
+  <g transform="translate(80, 120)">
+    <path d="M25,60 a20,20 0 0,1 0,-40 h100 a20,20 0 0,1 0,40 z" fill="url(#cloudGradient)" />
+    <animateTransform attributeName="transform" type="translate" from="0,0" to="10,0" dur="5s" repeatCount="indefinite" additive="sum" />
+  </g>
+  
+  <!-- Rain drops -->
+  <g>
+    <!-- Drop 1 -->
+    <path d="M100,200 l0,20 a2,2 0 0,0 4,0 l0,-20 a2,2 0 0,0 -4,0 z" fill="url(#rainGradient)">
+      <animate attributeName="opacity" values="0;1;0" dur="1.5s" begin="0.1s" repeatCount="indefinite" />
+      <animate attributeName="transform" type="translate" from="0,0" to="0,30" dur="1.5s" begin="0.1s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- Drop 2 -->
+    <path d="M130,180 l0,20 a2,2 0 0,0 4,0 l0,-20 a2,2 0 0,0 -4,0 z" fill="url(#rainGradient)">
+      <animate attributeName="opacity" values="0;1;0" dur="1.3s" begin="0.3s" repeatCount="indefinite" />
+      <animate attributeName="transform" type="translate" from="0,0" to="0,30" dur="1.3s" begin="0.3s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- Drop 3 -->
+    <path d="M160,200 l0,20 a2,2 0 0,0 4,0 l0,-20 a2,2 0 0,0 -4,0 z" fill="url(#rainGradient)">
+      <animate attributeName="opacity" values="0;1;0" dur="1.7s" begin="0.5s" repeatCount="indefinite" />
+      <animate attributeName="transform" type="translate" from="0,0" to="0,30" dur="1.7s" begin="0.5s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- Drop 4 -->
+    <path d="M190,180 l0,20 a2,2 0 0,0 4,0 l0,-20 a2,2 0 0,0 -4,0 z" fill="url(#rainGradient)">
+      <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="0.7s" repeatCount="indefinite" />
+      <animate attributeName="transform" type="translate" from="0,0" to="0,30" dur="1.4s" begin="0.7s" repeatCount="indefinite" />
+    </path>
+  </g>
+  
+  <!-- Small text for prediction -->
+  <text x="150" y="270" font-family="Arial" font-size="14" fill="#34495e" text-anchor="middle">Rainfall Prediction</text>
+</svg> 

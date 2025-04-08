@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainfall Predictor | AI-Powered Weather Forecasting</title>
+    <meta name="description" content="Get accurate rainfall predictions using advanced machine learning technology. Simply enter your city to find out if it will rain today.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-cloud-rain"></i>
+                <h1>Rainfall Predictor</h1>
+            </div>
+            <p class="tagline">Advanced machine learning for accurate rainfall predictions</p>
+        </header>
+        
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>Will it rain today?</h2>
+                    <p>Enter your city to get an instant AI-powered prediction based on real-time weather conditions</p>
+                    
+                    <div class="popular-cities-inline">
+                        <span>Popular:</span>
+                        <a href="#" class="city-tag" data-city="Mumbai">Mumbai</a>
+                        <a href="#" class="city-tag" data-city="Delhi">Delhi</a>
+                        <a href="#" class="city-tag" data-city="Bangalore">Bangalore</a>
+                        <a href="#" class="city-tag" data-city="Chennai">Chennai</a>
+                        <a href="#" class="city-tag" data-city="Kolkata">Kolkata</a>
+                        <a href="#" class="city-tag" data-city="Pune">Pune</a>
+                    </div>
+                    
+                    <form action="/predict" method="post" class="prediction-form">
+                        <div class="input-group">
+                            <input type="text" name="city" id="city" placeholder="Enter city name (e.g., Mumbai, Delhi)" required autocomplete="off">
+                            <button type="submit">
+                                <i class="fas fa-search"></i> Predict
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            
+            <section class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Instant Predictions</h3>
+                    <p>Get real-time rainfall predictions based on current atmospheric conditions from anywhere in the world</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>ML-Powered</h3>
+                    <p>Our advanced machine learning model analyzes multiple weather parameters for accurate predictions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>Global Coverage</h3>
+                    <p>Whether you're in Mumbai, Delhi, London, New York or Paris, our system works across Global with reliable data</p>
+                </div>
+            </section>
+            
+            <section class="weather-parameters">
+                <h2>Weather Parameters We Analyze</h2>
+                <div class="parameter-badges">
+                    <div class="parameter-badge">
+                        <i class="fas fa-compress-alt"></i>
+                        <span>Pressure</span>
+                    </div>
+                    <div class="parameter-badge">
+                        <i class="fas fa-tint"></i>
+                        <span>Dewpoint</span>
+                    </div>
+                    <div class="parameter-badge">
+                        <i class="fas fa-water"></i>
+                        <span>Humidity</span>
+                    </div>
+                    <div class="parameter-badge">
+                        <i class="fas fa-cloud"></i>
+                        <span>Cloud Coverage</span>
+                    </div>
+                    <div class="parameter-badge">
+                        <i class="fas fa-compass"></i>
+                        <span>Wind Direction</span>
+                    </div>
+                    <div class="parameter-badge">
+                        <i class="fas fa-wind"></i>
+                        <span>Wind Speed</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html> 

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ weather_data.city }} Rainfall Prediction | Rainfall Predictor</title>
+    <meta name="description" content="View rainfall prediction results for {{ weather_data.city }} based on current weather conditions.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-cloud-rain"></i>
+                <h1>Rainfall Predictor</h1>
+            </div>
+            <p class="tagline">Advanced machine learning for accurate rainfall predictions</p>
+        </header>
+        
+        <main>
+            <section class="result-section">
+                <div class="back-link">
+                    <a href="/"><i class="fas fa-arrow-left"></i> Back to search</a>
+                </div>
+                
+                <div class="result-card">
+                    <div class="city-header">
+                        <div class="city-info">
+                            <h2>{{ weather_data.city }}</h2>
+                            <div class="datetime">
+                                <i class="far fa-clock"></i> <span id="current-time">Analyzing now</span>
+                            </div>
+                        </div>
+                        <div class="current-weather">
+                            <p><i class="fas fa-temperature-high"></i> {{ weather_data.temperature }}°C</p>
+                            <p>{{ weather_data.condition }}</p>
+                            {% if weather_data.condition_icon %}
+                                <img src="https:{{ weather_data.condition_icon }}" alt="{{ weather_data.condition }}">
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="prediction-result {% if 'Yes' in prediction %}rain-expected{% else %}no-rain{% endif %}">
+                        <div class="prediction-icon">
+                            {% if "Yes" in prediction %}
+                                <i class="fas fa-cloud-showers-heavy"></i>
+                            {% else %}
+                                <i class="fas fa-sun"></i>
+                            {% endif %}
+                        </div>
+                        <div class="prediction-text">
+                            <h3>Prediction Result</h3>
+                            <p class="prediction">{{ prediction }}</p>
+                            <p class="confidence">
+                                Based on analysis of {{ weather_data.city }}'s current atmospheric conditions
+                                {% if "Yes" in prediction %}
+                                <span class="recommendation">
+                                    <i class="fas fa-umbrella"></i> Consider bringing an umbrella today
+                                </span>
+                                {% else %}
+                                <span class="recommendation">
+                                    <i class="fas fa-check-circle"></i> No need for an umbrella today
+                                </span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="weather-details">
+                    <h3>Analyzed Weather Parameters</h3>
+                    <div class="parameters-grid">
+                        <div class="parameter-card">
+                            <i class="fas fa-compress-alt"></i>
+                            <h4>Pressure</h4>
+                            <p>{{ weather_data.pressure }} mb</p>
+                            <div class="parameter-scale">
+                                <div class="scale-fill pressure-fill" data-width="{{ (weather_data.pressure / 1100) * 100 }}"></div>
+                            </div>
+                        </div>
+                        <div class="parameter-card">
+                            <i class="fas fa-tint"></i>
+                            <h4>Dewpoint</h4>
+                            <p>{{ weather_data.dewpoint }}°C</p>
+                            <div class="parameter-scale">
+                                <div class="scale-fill dewpoint-fill" data-width="{{ ((weather_data.dewpoint + 20) / 40) * 100 }}"></div>
+                            </div>
+                        </div>
+                        <div class="parameter-card">
+                            <i class="fas fa-water"></i>
+                            <h4>Humidity</h4>
+                            <p>{{ weather_data.humidity }}%</p>
+                            <div class="parameter-scale">
+                                <div class="scale-fill humidity-fill" data-width="{{ weather_data.humidity }}"></div>
+                            </div>
+                        </div>
+                        <div class="parameter-card">
+                            <i class="fas fa-cloud"></i>
+                            <h4>Cloud Coverage</h4>
+                            <p>{{ weather_data.cloud }}%</p>
+                            <div class="parameter-scale">
+                                <div class="scale-fill cloud-fill" data-width="{{ weather_data.cloud }}"></div>
+                            </div>
+                        </div>
+                        <div class="parameter-card">
+                            <i class="fas fa-compass"></i>
+                            <h4>Wind Direction</h4>
+                            <p>{{ weather_data.wind_direction }}°</p>
+                            <div class="parameter-scale">
+                                <div class="scale-fill" data-width="{{ (weather_data.wind_direction / 360) * 100 }}"></div>
+                            </div>
+                        </div>
+                        <div class="parameter-card">
+                            <i class="fas fa-wind"></i>
+                            <h4>Wind Speed</h4>
+                            <p>{{ weather_data.wind_speed }} kph</p>
+                            <div class="parameter-scale">
+                                <div class="scale-fill wind-fill" data-width="{{ (weather_data.wind_speed / 50) * 100 }}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="actions">
+                    <a href="/" class="action-button"><i class="fas fa-search"></i> New Prediction</a>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Apply styles from data attributes to avoid linter errors
+        document.querySelectorAll('.scale-fill[data-width]').forEach(function(el) {
+            el.style.width = el.getAttribute('data-width') + '%';
+        });
+        
+    });
+    </script>
+</body>
+</html> 
